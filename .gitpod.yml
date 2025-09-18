@@ -1,0 +1,25 @@
+# .gitpod.yml
+tasks:
+  - init: |
+      # Install project dependencies
+      mvn install
+    command: |
+      echo "Environment is ready!"
+      echo "PostgreSQL database is running."
+      echo "To run the JDBC demo, use the terminal to execute:"
+      echo "mvn exec:java -Dexec.mainClass=\"com.example.JdbcDemo\""
+      echo "To run the JPA demo, use the terminal to execute:"
+      echo "mvn exec:java -Dexec.mainClass=\"com.example.JpaDemo\""
+
+# Expose the PostgreSQL port so we can access it
+ports:
+  - port: 5432
+    onOpen: ignore
+
+# Use a pre-built image with Java and Maven
+image: gitpod/workspace-java-maven
+
+# Add a PostgreSQL database to our workspace
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
